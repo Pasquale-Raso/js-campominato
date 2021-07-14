@@ -15,10 +15,9 @@
 // ___________________creo array per bombe e genero 16 numeri random_________________________
 
 var Bombe = [];
-
-for (let i = 0; i < 16; i++) {
+while (Bombe.length < 16) {
   var random = Math.floor(Math.random() * 100 + 1);
-  Bombe.push(random);
+  if (!Bombe.includes(random)) Bombe.push(random);
 }
 console.log(Bombe);
 
