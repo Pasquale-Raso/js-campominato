@@ -12,24 +12,24 @@
 //
 //
 
-// ___________________crea array per bombe e genera 16 numeri random_________________________
+// ___________________creo array per bombe e genero 16 numeri random_________________________
 
-var numeriBombe = [];
+var Bombe = [];
 
 for (let i = 0; i < 16; i++) {
   var random = Math.floor(Math.random() * 100 + 1);
-  numeriBombe.push(random);
+  Bombe.push(random);
 }
-console.log(numeriBombe);
+console.log(Bombe);
 
-// ___________________chiedi il numero all'utente_________________________
+// ___creo una variante di appoggio dei numeri Inseriti Dall'Utente_________________________
+var numeriInseritiDaUtente = 0;
 
-var n1 = prompt("Inserisci il numero", "5");
-for (let i = 0; i < numeriBombe; i++) {
-  if (n1 == numeriBombe) {
-    alert("BOOM! Hai perso!");
+for (let i = 0; i < 3; i++) {
+  var numeriInseritiDaUtente = prompt("Inserisci il numero", "5");
+  if (numeriInseritiDaUtente === Bombe[0]) {
+    allert("BOOM! Hai perso!");
   } else {
-    alert("BENE! CONTINUA A GIOCARE!");
-    var n1 = prompt("Inserisci il numero", "5");
+    allert("BENE! CONTINUA A GIOCARE!");
   }
 }
