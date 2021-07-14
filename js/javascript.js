@@ -6,10 +6,10 @@
 // Se il numero scelto dall'utente è presente tra i numeri bomba, la partita termina.
 // Quando la partita termina, comunichiamo all'utente il suo punteggio.
 
-//
-//
-//
-//
+//1.  creo array per bombe e genero 16 numeri random
+//2.  creo una variante di appoggio dei numeri Inseriti Dall'Utente
+//3.  creo una ciclo for che per 16 volte chiede un numero alla volta e confronta se è presente nell'array delle bombe
+//4.  creo un variabile contatore che se il numero digitato non è presente nell'array bombe, aggiunge +1
 //
 
 // ___________________creo array per bombe e genero 16 numeri random_________________________
@@ -23,13 +23,15 @@ for (let i = 0; i < 16; i++) {
 console.log(Bombe);
 
 // ___creo una variante di appoggio dei numeri Inseriti Dall'Utente_________________________
+
 var numeriInseritiDaUtente = 0;
 
+// creo una ciclo for che per 16 volte chieda un numero allavolta e confronta se è presente nell'array delle bombe_________________________
 for (let i = 0; i < 3; i++) {
-  var numeriInseritiDaUtente = prompt("Inserisci il numero", "5");
+  var numeriInseritiDaUtente = prompt("Inserisci un numero da 1 a 100", "5");
   if (numeriInseritiDaUtente === Bombe[0]) {
-    allert("BOOM! Hai perso!");
+    alert("BOOM! HAI PERSO!");
   } else {
-    allert("BENE! CONTINUA A GIOCARE!");
+    alert("BENE! CONTINUA A GIOCARE!");
   }
 }
