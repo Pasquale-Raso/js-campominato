@@ -7,51 +7,68 @@
 // Quando la partita termina, comunichiamo all'utente il suo punteggio.
 
 // ____________________________________________PREPARAZIONE________________________________________________________________
-var totalNumbers = 5;
-var totalBombs = 2;
+var totalNumbers = 100;
+var totalBombs = 16;
 var possibilita = totalNumbers - totalBombs;
-var numeriBombe = [1, 2];
+var numeriBombe = [];
 
-// while (numeriBombe.length < totalBombs) {
-//   var numeroCasuale = getRandomNumber(1, totalNumbers);
+while (numeriBombe.length < totalBombs) {
+  var numeroCasuale = getRandomNumber(1, totalNumbers);
 
-//   //---------------------------------------- o cosi-------------------------------
-//   // while (numeriBombe.length < totalBombs) {
-//   //   var numeroCasuale = Math.floor(Math.random() * (totalNumber - 1 + 1) + 1);
+  //---------------------------------------- o cosi-------------------------------
+  // while (numeriBombe.length < totalBombs) {
+  //   var numeroCasuale = Math.floor(Math.random() * (totalNumber - 1 + 1) + 1);
 
-//   if (!isInArray(numeroCasuale, numeriBombe)) {
-//     numeriBombe.push(numeroCasuale);
-//   }
-//   //---------------------------------------- o cosi-------------------------------
-//   // if (!numeriBombe.includes(numeroCasuale)) {
-//   //   numeriBombe.push(numeroCasuale);
-//   // }
-// }
-
+  if (!isInArray(numeroCasuale, numeriBombe)) {
+    numeriBombe.push(numeroCasuale);
+  }
+  //---------------------------------------- o cosi-------------------------------
+  // if (!numeriBombe.includes(numeroCasuale)) {
+  //   numeriBombe.push(numeroCasuale);
+  // }
+}
+console.log(numeriBombe);
 // _______________________________________________GIOCO__________________________________________________________________
 
 var numeriUtente = [];
+var userLost = false;
 
-// while (numeriUtente.length < possibilita) {
-//   var userChoice = getUserNumber(1, totalNumbers);
-// }
+while (!userLost && numeriUtente.length < possibilita) {
+  var userChoice = getUserNumber(1, totalNumbers);
 
-var userChoice = prompt("inserisci un numero da 1 a " + totalNumbers);
+  //---------------------------------------- o cosi-------------------------------
 
-while (numeriUtente.length < possibilita) {
-  while (
-    !userChoice ||
-    userChoice.trim() === "" ||
-    isNaN(userChoice) ||
-    userChoice < 1 ||
-    userChoice > totalNumbers
-  ) {
-    userChoice = prompt("inserisci un numero da 1 a " + totalNumbers);
+  // var userChoice = prompt("inserisci un numero da 1 a " + totalNumbers);
+
+  // while (numeriUtente.length < possibilita) {
+  //   while (
+  //     !userChoice ||
+  //     isNaN(userChoice) ||
+  //     userChoice < 1 ||
+  //     userChoice > totalNumbers
+  //   ) {
+  //     userChoice = prompt("inserisci un numero da 1 a " + totalNumbers);
+  //   }
+  //   userChoice = parseInt(userChoice);
+  // }
+
+  if (isInArray(userChoice, numeriUtente)) {
+    alert("il numero è già stato scelto!");
+  } else {
+    if (isInArray(userChoice, numeriBombe)) {
+      userLost = true;
+    } else {
+      numeriUtente.push(userChoice);
+    }
   }
-  userChoice = parseInt(userChoice);
+  console.log(numeriUtente);
 }
-
-// _____________________________________________FUNZIONE_________________________________________________________________
+if (userLost) {
+  alert("HAI PERSO!!!! Hai totalizzato " + numeriUtente.length + " punti");
+} else {
+  alert("Hai Vinto!");
+}
+// _____________________________________________FUNZIONI_________________________________________________________________
 
 // genera un numero tra il minimo e il massimo
 
@@ -74,16 +91,10 @@ function isInArray(needle, arr) {
 
 // controlla i numeri inseriti dall'utente
 
-// function getUserNumber(min, max) {
-//   var number;
-//   do {
-//     number = prompt("inserisci un numero da " + min + " a " + max);
-//   } while (
-//     !number ||
-//     number.trim() === "" ||
-//     isNaN(number) ||
-//     number < min ||
-//     number > max
-//   );
-//   return parseInt(number);
-// }
+function getUserNumber(min, max) {
+  var number;
+  do {
+    number = prompt("inserisci un numero da " + min + " a " + max);
+  } while (!number || isNaN(number) || number < min || number > max);
+  return parseInt(number);
+}
